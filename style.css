@@ -523,9 +523,9 @@ input:checked + .slider:before {
 }
 
 .github-logo img {
-    width: 24px;    /* Reduced from 32px */
-    height: 24px;   /* Reduced from 32px */
-    border-radius: 50%;
+    width: 50px;    /* Increased from 24px */
+    height: 50px;   /* Increased from 24px */
+    border-radius: 100%;
 }
 
 /* Add responsive styles */
@@ -556,8 +556,8 @@ input:checked + .slider:before {
     }
 
     .github-logo img {
-        width: 20px;    /* Even smaller on mobile */
-        height: 20px;
+        width: 28px;    /* Increased from 20px */
+        height: 28px;
     }
 
     button {
@@ -651,8 +651,8 @@ input:checked + .slider:before {
     }
 
     .github-logo img {
-        width: 18px;    /* Smallest size for mobile */
-        height: 18px;
+        width: 24px;    /* Increased from 18px */
+        height: 24px;
     }
 }
 
@@ -661,4 +661,16 @@ input:checked + .slider:before {
     display: flex;
     justify-content: center;
     margin: 20px 0;
+}
+
+/* Add styles for screen-reader-only content */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
 }
