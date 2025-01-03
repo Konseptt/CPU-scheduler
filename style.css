@@ -76,22 +76,23 @@ input[type="number"] {
     margin-right: 10px;
 }
 
+/* Update base button styles */
 button {
     font-family: 'Inter', sans-serif;
     font-size: 0.8rem;
     font-weight: 500;
-    padding: 6px 12px;
+    padding: 10px 20px;  /* Consistent padding for all buttons */
+    min-width: 120px;    /* Consistent minimum width */
     cursor: pointer;
     background: var(--primary-color);
     color: white;
     border: none;
     border-radius: 6px;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background: var(--secondary-color);
-    transform: translateY(-1px);
 }
 
 button:active {
@@ -499,4 +500,19 @@ input:checked + .slider:before {
     color: var(--primary-color);
     font-weight: 600;
     text-align: right;
+}
+
+/* Add this new style for the calculate button container */
+.calculate-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+
+/* Add this new style for the calculate button container */
+.calculate-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
 }
