@@ -509,6 +509,152 @@ input:checked + .slider:before {
     margin: 20px 0;
 }
 
+/* Update GitHub logo styles */
+.github-logo {
+    position: fixed;  /* Change from absolute to fixed */
+    bottom: 30px;    /* Change from top to bottom */
+    right: 30px;
+    transition: opacity 0.3s ease;
+    z-index: 100;    /* Ensure it stays on top */
+}
+
+.github-logo:hover {
+    opacity: 0.8;
+}
+
+.github-logo img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+/* Add responsive styles */
+@media screen and (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+        text-align: center;
+        margin-top: 60px;
+    }
+
+    .theme-switch-wrapper {
+        top: 15px;
+        right: 15px;
+    }
+
+    .github-logo {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .github-logo img {
+        width: 24px;
+        height: 24px;
+    }
+
+    button {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+        min-width: 100px;
+    }
+
+    .input-group textarea {
+        font-size: 0.75rem;
+        padding: 6px;
+    }
+
+    .averages-table {
+        max-width: 100%;
+    }
+
+    .gantt-block {
+        flex: 0 0 50px;
+        min-height: 40px;
+        font-size: 0.7rem;
+    }
+
+    .results {
+        padding: 15px;
+    }
+
+    table {
+        font-size: 0.75rem;
+    }
+
+    th, td {
+        padding: 4px;
+    }
+
+    .mode-indicator {
+        display: none;
+    }
+}
+
+/* Add smaller screen optimizations */
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 8px;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+        margin-top: 50px;
+    }
+
+    .left-panel, .right-panel {
+        padding: 10px;
+    }
+
+    .gantt-block {
+        flex: 0 0 40px;
+        min-height: 35px;
+        font-size: 0.65rem;
+        padding: 4px 2px;
+    }
+
+    .algorithm-select select {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .input-group label {
+        font-size: 0.7rem;
+    }
+
+    .calculate-button-container button,
+    .process-inputs button {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .gantt-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    #currentAlgorithm {
+        font-size: 0.7rem;
+    }
+
+    .github-logo {
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .github-logo img {
+        width: 28px;
+        height: 28px;
+    }
+}
 
 /* Add this new style for the calculate button container */
 .calculate-button-container {
