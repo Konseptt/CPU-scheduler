@@ -1,7 +1,6 @@
 import { calculateFCFS } from './algorithms/fcfs.js';
 import { calculateSJF } from './algorithms/sjf.js';
 import { calculateSRTF } from './algorithms/srtf.js';
-import { calculateRR } from './algorithms/roundRobin.js';
 import { calculatePriorityNP, calculatePriorityP } from './algorithms/priority.js';
 
 // Make functions globally available
@@ -48,17 +47,18 @@ window.addEventListener('load', () => {
 
 // Show/hide inputs based on algorithm selection
 document.getElementById('algorithm').addEventListener('change', function() {
-    const timeQuantumInput = document.getElementById('timeQuantumInput');
     const priorityInput = document.getElementById('priorityInput');
+    const priorityColumn = document.querySelectorAll('.priority-column');
     
-    timeQuantumInput.style.display = 'none';
     priorityInput.style.display = 'none';
+    priorityColumn.forEach(el => el.style.display = 'none');
 
-    if (this.value === 'rr') {
-        timeQuantumInput.style.display = 'block';
-    } else if (this.value.includes('priority')) {
+    if (this.value.includes('priority')) {
         priorityInput.style.display = 'block';
+        priorityColumn.forEach(el => el.style.display = 'table-cell');
     }
+    
+    updateProcessTable(); // Refresh table to show/hide priority column
 });
 
 function processInput() {
@@ -145,16 +145,12 @@ function updateProcessTable() {
 
     processes.forEach(process => {
         const row = document.createElement('tr');
-        let html = `
+        row.innerHTML = `
             <td>P${process.id}</td>
             <td>${process.arrivalTime}</td>
-            <td>${process.burstTime}</td>`;
-            
-        if (algorithm.includes('priority')) {
-            html += `<td>${process.priority}</td>`;
-        }
-        
-        row.innerHTML = html;
+            <td>${process.burstTime}</td>
+            ${algorithm.includes('priority') ? `<td class="priority-column">${process.priority}</td>` : ''}
+        `;
         tbody.appendChild(row);
     });
 }
@@ -170,7 +166,6 @@ async function calculateScheduling() {
         'fcfs': 'First Come First Served (FCFS)',
         'sjf': 'Shortest Job First (Non-preemptive)',
         'srtf': 'Shortest Remaining Time First (Preemptive)',
-        'rr': 'Round Robin',
         'priority-np': 'Priority (Non-preemptive)',
         'priority-p': 'Priority (Preemptive)'
     };
@@ -189,14 +184,6 @@ async function calculateScheduling() {
                 break;
             case 'srtf':
                 result = calculateSRTF(processes);
-                break;
-            case 'rr':
-                const timeQuantum = parseInt(document.getElementById('timeQuantum').value);
-                if (isNaN(timeQuantum) || timeQuantum <= 0) {
-                    alert('Please enter a valid time quantum');
-                    return;
-                }
-                result = calculateRR(processes, timeQuantum);
                 break;
             case 'priority-np':
                 result = calculatePriorityNP(processes);

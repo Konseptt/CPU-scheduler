@@ -77,7 +77,7 @@
                         <option value="fcfs">First Come First Served (FCFS)</option>
                         <option value="sjf">Shortest Job First (Non-preemptive)</option>
                         <option value="srtf">Shortest Remaining Time First (Preemptive)</option>
-                        <option value="rr">Round Robin</option>
+                        <!-- Remove Round Robin option -->
                         <option value="priority-np">Priority (Non-preemptive)</option>
                         <option value="priority-p">Priority (Preemptive)</option>
                     </select>
@@ -117,6 +117,7 @@
                                 <th>Process</th>
                                 <th>Arrival Time</th>
                                 <th>Burst Time</th>
+                                <th class="priority-column" style="display: none;">Priority</th>
                             </tr>
                         </thead>
                         <tbody id="processTableBody"></tbody>

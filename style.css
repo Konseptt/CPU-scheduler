@@ -110,8 +110,11 @@ button:active {
     border-color: #90a4ae;
 }
 
+/* Standardize table size */
 table {
     width: 100%;
+    max-width: 1000px; /* Restrict maximum table width */
+    margin: 0 auto;
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 0.8rem;
@@ -169,8 +172,10 @@ td {
     border-radius: 4px;
 }
 
+/* Standardize Gantt chart block size */
 .gantt-block {
-    flex: 0 0 60px;  /* Even smaller block width */
+    flex: 0 0 80px;  /* Wider gantt blocks */
+    min-height: 50px;
     padding: 6px 3px;
     border: 1px solid var(--border-color);
     margin-right: 4px;
@@ -181,7 +186,6 @@ td {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 45px;
     border-radius: 4px;
     box-shadow: var(--shadow);
 }
@@ -523,9 +527,9 @@ input:checked + .slider:before {
 }
 
 .github-logo img {
-    width: 50px;    /* Increased from 24px */
-    height: 50px;   /* Increased from 24px */
-    border-radius: 100%;
+    width: 50px;    /* Updated from 24px */
+    height: 50px;   /* Updated from 24px */
+    border-radius: 50%;
 }
 
 /* Add responsive styles */
@@ -556,8 +560,8 @@ input:checked + .slider:before {
     }
 
     .github-logo img {
-        width: 28px;    /* Increased from 20px */
-        height: 28px;
+        width: 40px;    /* Updated from 20px for better visibility on mobile */
+        height: 40px;
     }
 
     button {
@@ -651,8 +655,8 @@ input:checked + .slider:before {
     }
 
     .github-logo img {
-        width: 24px;    /* Increased from 18px */
-        height: 24px;
+        width: 35px;    /* Updated from 18px for better visibility on smaller screens */
+        height: 35px;
     }
 }
 

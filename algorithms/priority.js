@@ -15,7 +15,7 @@ export function calculatePriorityNP(processes) {
         }
 
         let highestPriority = availableProcesses.reduce((prev, curr) => 
-            prev.priority > curr.priority ? prev : curr
+            prev.priority < curr.priority ? prev : curr
         );
 
         if (highestPriority.responseTime === -1) {
@@ -57,7 +57,7 @@ export function calculatePriorityP(processes) {
         }
 
         let highestPriority = availableProcesses.reduce((prev, curr) => 
-            prev.priority > curr.priority ? prev : curr
+            prev.priority < curr.priority ? prev : curr
         );
 
         if (highestPriority.responseTime === -1) {
