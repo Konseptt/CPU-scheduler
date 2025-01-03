@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU Scheduling - FCFS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="checkbox">
+                <input type="checkbox" id="checkbox" />
+                <div class="slider round"></div>
+            </label>
+            <span id="modeIndicator" class="mode-indicator">Light Mode</span>
+        </div>
+        <h1>CPU Scheduling Algorithms</h1>
+        
+        <div class="main-content">
+            <div class="left-panel">
+                <h2>Algorithm Selection</h2>
+                <div class="algorithm-select">
+                    <select id="algorithm">
+                        <option value="fcfs">First Come First Served (FCFS)</option>
+                        <option value="sjf">Shortest Job First (Non-preemptive)</option>
+                        <option value="srtf">Shortest Remaining Time First (Preemptive)</option>
+                        <option value="rr">Round Robin</option>
+                        <option value="priority-np">Priority (Non-preemptive)</option>
+                        <option value="priority-p">Priority (Preemptive)</option>
+                    </select>
+                    <div id="timeQuantumInput" style="display: none;">
+                        <input type="number" id="timeQuantum" placeholder="Time Quantum">
+                    </div>
+                </div>
+                
+                <div class="input-section">
+                    <h2>Process Inputs</h2>
+                    <div class="process-inputs">
+                        <div class="input-group">
+                            <label>Arrival Times (space-separated)</label>
+                            <textarea id="arrivalInput" placeholder="Example: 0 1 2 3" rows="1"></textarea>
+                        </div>
+                        <div class="input-group">
+                            <label>Burst Times (space-separated)</label>
+                            <textarea id="burstInput" placeholder="Example: 3 6 4 5" rows="1"></textarea>
+                        </div>
+                        <div class="input-group" id="priorityInput" style="display: none;">
+                            <label>Priority Values (space-separated)</label>
+                            <textarea id="priorityValues" placeholder="Example: 2 1 4 3" rows="1"></textarea>
+                        </div>
+                        <button onclick="window.processInput()">Process Input</button>
+                    </div>
+                    <button onclick="window.calculateScheduling()">Calculate</button>
+                </div>
+
+                <div class="process-list">
+                    <h2>Processes</h2>
+                    <table id="processTable">
+                        <thead>
+                            <tr>
+                                <th>Process</th>
+                                <th>Arrival Time</th>
+                                <th>Burst Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="processTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="right-panel">
+                <div class="visualization">
+                    <div class="gantt-section">
+                        <div class="gantt-header">
+                            <h2>Gantt Chart</h2>
+                            <div class="algorithm-name">
+                                <span>Algorithm:</span>
+                                <div id="currentAlgorithm">No algorithm selected</div>
+                            </div>
+                        </div>
+                        <div id="ganttChart"></div>
+                    </div>
+                    <div class="results">
+                        <h2>Results</h2>
+                        <div id="resultTable"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
