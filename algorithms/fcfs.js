@@ -17,17 +17,16 @@ export function calculateFCFS(processes) {
 
         process.responseTime = currentTime - process.arrivalTime;
         process.startTime = currentTime;
-        process.finishTime = currentTime + process.burstTime;
+        process.waitingTime = process.responseTime;
+        currentTime += process.burstTime;
+        process.finishTime = currentTime;
         process.turnaroundTime = process.finishTime - process.arrivalTime;
-        process.waitingTime = process.turnaroundTime - process.burstTime;
 
         timeline.push({
             processId: process.id,
-            startTime: currentTime,
+            startTime: process.startTime,
             endTime: process.finishTime
         });
-
-        currentTime = process.finishTime;
     });
 
     return { timeline, processes: processQueue };

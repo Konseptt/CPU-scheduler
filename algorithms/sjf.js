@@ -1,41 +1,57 @@
 export function calculateSJF(processes) {
     const processQueue = JSON.parse(JSON.stringify(processes));
-    let currentTime = 0;
+    processQueue.sort((a, b) => a.arrivalTime - b.arrivalTime);
+
     let completed = 0;
-    let timeline = [];
+    let currentTime = 0;
+    const n = processQueue.length;
+    const isCompleted = Array(n).fill(false);
+    const timeline = [];
 
-    while (completed < processQueue.length) {
-        let availableProcesses = processQueue.filter(p => 
-            p.remainingTime > 0 && p.arrivalTime <= currentTime
-        );
+    while (completed !== n) {
+        let idx = -1;
+        let minBurst = Infinity;
 
-        if (availableProcesses.length === 0) {
-            currentTime++;
-            continue;
-        }
-
-        let shortestJob = availableProcesses.reduce((prev, curr) => 
-            prev.burstTime < curr.burstTime ? prev : curr
-        );
-
-        if (shortestJob.startTime === -1) {
-            shortestJob.startTime = currentTime;
-            shortestJob.responseTime = currentTime - shortestJob.arrivalTime;
-        }
-
-        timeline.push({
-            processId: shortestJob.id,
-            startTime: currentTime,
-            endTime: currentTime + shortestJob.burstTime
+        processQueue.forEach((process, i) => {
+            if (process.arrivalTime <= currentTime && !isCompleted[i]) {
+                if (process.burstTime < minBurst) {
+                    minBurst = process.burstTime;
+                    idx = i;
+                } else if (process.burstTime === minBurst) {
+                    if (process.arrivalTime < processQueue[idx].arrivalTime) {
+                        idx = i;
+                    }
+                }
+            }
         });
 
-        currentTime += shortestJob.burstTime;
-        shortestJob.remainingTime = 0;
-        shortestJob.finishTime = currentTime;
-        shortestJob.turnaroundTime = shortestJob.finishTime - shortestJob.arrivalTime;
-        shortestJob.waitingTime = shortestJob.turnaroundTime - shortestJob.burstTime;
-        completed++;
-    }
+        if (idx !== -1) {
+            if (currentTime < processQueue[idx].arrivalTime) {
+                timeline.push({
+                    processId: 'idle',
+                    startTime: currentTime,
+                    endTime: processQueue[idx].arrivalTime
+                });
+                currentTime = processQueue[idx].arrivalTime;
+            }
 
+            processQueue[idx].startTime = currentTime;
+            processQueue[idx].responseTime = currentTime - processQueue[idx].arrivalTime;
+            processQueue[idx].waitingTime = processQueue[idx].responseTime;
+            currentTime += processQueue[idx].burstTime;
+            processQueue[idx].finishTime = currentTime;
+            processQueue[idx].turnaroundTime = processQueue[idx].finishTime - processQueue[idx].arrivalTime;
+            isCompleted[idx] = true;
+            completed++;
+
+            timeline.push({
+                processId: processQueue[idx].id,
+                startTime: processQueue[idx].startTime,
+                endTime: processQueue[idx].finishTime
+            });
+        } else {
+            currentTime++;
+        }
+    }
     return { timeline, processes: processQueue };
 }

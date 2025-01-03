@@ -1,6 +1,7 @@
 import { calculateFCFS } from './algorithms/fcfs.js';
 import { calculateSJF } from './algorithms/sjf.js';
 import { calculateSRTF } from './algorithms/srtf.js';
+// import { calculateRR } from './algorithms/roundRobin.js'; // Removed Round Robin import
 import { calculatePriorityNP, calculatePriorityP } from './algorithms/priority.js';
 
 // Make functions globally available
@@ -166,6 +167,7 @@ async function calculateScheduling() {
         'fcfs': 'First Come First Served (FCFS)',
         'sjf': 'Shortest Job First (Non-preemptive)',
         'srtf': 'Shortest Remaining Time First (Preemptive)',
+        // 'rr': 'Round Robin', // Removed Round Robin name
         'priority-np': 'Priority (Non-preemptive)',
         'priority-p': 'Priority (Preemptive)'
     };
@@ -185,6 +187,14 @@ async function calculateScheduling() {
             case 'srtf':
                 result = calculateSRTF(processes);
                 break;
+            // case 'rr':
+            //     const quantum = parseInt(document.getElementById('timeQuantum').value);
+            //     if (isNaN(quantum) || quantum <= 0) {
+            //         alert('Please enter a valid Time Quantum for Round Robin.');
+            //         return;
+            //     }
+            //     result = calculateRR(processes, quantum);
+            //     break;
             case 'priority-np':
                 result = calculatePriorityNP(processes);
                 break;
