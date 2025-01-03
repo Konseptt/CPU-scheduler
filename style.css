@@ -512,8 +512,8 @@ input:checked + .slider:before {
 /* Update GitHub logo styles */
 .github-logo {
     position: fixed;  /* Change from absolute to fixed */
-    bottom: 30px;    /* Change from top to bottom */
-    right: 30px;
+    bottom: 20px;    /* Change from top to bottom */
+    right: 20px;
     transition: opacity 0.3s ease;
     z-index: 100;    /* Ensure it stays on top */
 }
@@ -523,8 +523,8 @@ input:checked + .slider:before {
 }
 
 .github-logo img {
-    width: 32px;
-    height: 32px;
+    width: 24px;    /* Reduced from 32px */
+    height: 24px;   /* Reduced from 32px */
     border-radius: 50%;
 }
 
@@ -556,8 +556,8 @@ input:checked + .slider:before {
     }
 
     .github-logo img {
-        width: 24px;
-        height: 24px;
+        width: 20px;    /* Even smaller on mobile */
+        height: 20px;
     }
 
     button {
@@ -646,13 +646,13 @@ input:checked + .slider:before {
     }
 
     .github-logo {
-        bottom: 15px;
-        right: 15px;
+        bottom: 12px;
+        right: 12px;
     }
 
     .github-logo img {
-        width: 28px;
-        height: 28px;
+        width: 18px;    /* Smallest size for mobile */
+        height: 18px;
     }
 }
 
