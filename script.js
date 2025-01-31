@@ -1,7 +1,7 @@
 import { calculateFCFS } from './algorithms/fcfs.js';
 import { calculateSJF } from './algorithms/sjf.js';
 import { calculateSRTF } from './algorithms/srtf.js';
-// import { calculateRR } from './algorithms/roundRobin.js'; // Removed Round Robin import
+import { calculateRR } from './algorithms/roundRobin.js'; // Added Round Robin import
 import { calculatePriorityNP, calculatePriorityP } from './algorithms/priority.js';
 
 // Make functions globally available
@@ -49,14 +49,18 @@ window.addEventListener('load', () => {
 // Show/hide inputs based on algorithm selection
 document.getElementById('algorithm').addEventListener('change', function() {
     const priorityInput = document.getElementById('priorityInput');
+    const timeQuantumInput = document.getElementById('timeQuantumInput'); // Added timeQuantumInput
     const priorityColumn = document.querySelectorAll('.priority-column');
     
     priorityInput.style.display = 'none';
+    timeQuantumInput.style.display = 'none'; // Hide timeQuantumInput by default
     priorityColumn.forEach(el => el.style.display = 'none');
 
     if (this.value.includes('priority')) {
         priorityInput.style.display = 'block';
         priorityColumn.forEach(el => el.style.display = 'table-cell');
+    } else if (this.value === 'rr') { // Show timeQuantumInput for Round Robin
+        timeQuantumInput.style.display = 'block';
     }
     
     updateProcessTable(); // Refresh table to show/hide priority column
@@ -167,7 +171,7 @@ async function calculateScheduling() {
         'fcfs': 'First Come First Served (FCFS)',
         'sjf': 'Shortest Job First (Non-preemptive)',
         'srtf': 'Shortest Remaining Time First (Preemptive)',
-        // 'rr': 'Round Robin', // Removed Round Robin name
+        'rr': 'Round Robin', // Added Round Robin name
         'priority-np': 'Priority (Non-preemptive)',
         'priority-p': 'Priority (Preemptive)'
     };
@@ -187,14 +191,14 @@ async function calculateScheduling() {
             case 'srtf':
                 result = calculateSRTF(processes);
                 break;
-            // case 'rr':
-            //     const quantum = parseInt(document.getElementById('timeQuantum').value);
-            //     if (isNaN(quantum) || quantum <= 0) {
-            //         alert('Please enter a valid Time Quantum for Round Robin.');
-            //         return;
-            //     }
-            //     result = calculateRR(processes, quantum);
-            //     break;
+            case 'rr': // Added Round Robin case
+                const quantum = parseInt(document.getElementById('timeQuantum').value);
+                if (isNaN(quantum) || quantum <= 0) {
+                    alert('Please enter a valid Time Quantum for Round Robin.');
+                    return;
+                }
+                result = calculateRR(processes, quantum);
+                break;
             case 'priority-np':
                 result = calculatePriorityNP(processes);
                 break;
