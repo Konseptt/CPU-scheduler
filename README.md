@@ -1,76 +1,102 @@
-# CPU Scheduling Algorithms Simulator
+# CPU Scheduler
 
-## Description
-This project is an interactive web-based CPU scheduling algorithm simulator featuring multiple scheduling algorithms with visualization. It is created for educational purposes to help understand how different CPU scheduling algorithms work.
+I built this CPU Scheduling Simulator as a clean and visual way to practice scheduling logic from Operating Systems. You can add process inputs, pick an algorithm, and instantly view both the Gantt chart and timing metrics.
 
-### Purpose
-The purpose of this project is to provide a visual and interactive way to learn and understand various CPU scheduling algorithms. It allows users to input different processes and visualize how each scheduling algorithm handles them.
+## Live website
 
-### Features
-- Supports multiple CPU scheduling algorithms: FCFS, SJF, SRTF, Round Robin, and Priority scheduling.
-- Interactive Gantt chart visualization.
-- Detailed results including completion time, turnaround time, waiting time, and response time for each process.
-- Dark mode support.
+- https://syllabuscal.ranjansharma.info.np
 
-## Installation
-To install and run the project locally, follow these steps:
+## What this project does
 
-1. Clone the repository:
+This simulator supports:
+- First Come First Served (FCFS)
+- Shortest Job First (SJF, non-preemptive)
+- Shortest Remaining Time First (SRTF, preemptive)
+- Round Robin (with time quantum)
+- Priority Scheduling (non-preemptive and preemptive)
+
+For each run, it calculates:
+- Completion Time
+- Turnaround Time
+- Waiting Time
+- Response Time
+- Average values for the metrics above
+
+## Tech stack
+
+- HTML
+- CSS
+- Vanilla JavaScript (ES modules)
+
+## How the app flows
+
+```mermaid
+flowchart TD
+    A[Open Simulator] --> B[Select Scheduling Algorithm]
+    B --> C[Enter Arrival and Burst Times]
+    C --> D{Priority or Round Robin?}
+    D -->|Priority| E[Enter Priority Values]
+    D -->|Round Robin| F[Enter Time Quantum]
+    D -->|Other| G[Skip Extra Inputs]
+    E --> H[Process Input]
+    F --> H
+    G --> H
+    H --> I[Build Process Table]
+    I --> J[Calculate]
+    J --> K[Run Selected Algorithm]
+    K --> L[Generate Timeline]
+    K --> M[Compute Per Process Metrics]
+    L --> N[Render Gantt Chart]
+    M --> O[Render Results Table + Averages]
+```
+
+## Project diagram
+
+```mermaid
+graph LR
+    UI[index.html + style.css] --> App[script.js]
+    App --> FCFS[algorithms/fcfs.js]
+    App --> SJF[algorithms/sjf.js]
+    App --> SRTF[algorithms/srtf.js]
+    App --> RR[algorithms/roundRobin.js]
+    App --> PR[algorithms/priority.js]
+    App --> OUT1[Gantt Chart]
+    App --> OUT2[Results Table]
+```
+
+## Input format
+
+Use space separated values.
+
+Examples:
+- Arrival Times: `0 1 2 3`
+- Burst Times: `3 6 4 5`
+- Priority Values: `2 1 4 3`
+- Time Quantum: `2`
+
+## Run locally
+
+1. Clone the repository
    ```bash
    git clone https://github.com/Konseptt/CPU-scheduler.git
    ```
-2. Navigate to the project directory:
-   ```bash
-   cd CPU-scheduler
-   ```
-3. Open `index.html` in your web browser to start the simulator.
+2. Open the project folder
+3. Open `index.html` in your browser
 
-## Usage
-1. Select a CPU scheduling algorithm from the dropdown menu.
-2. Enter the arrival times, burst times, and priority values (if applicable) for the processes.
-3. Click the "Process Input" button to add the processes.
-4. Click the "Calculate" button to visualize the scheduling algorithm and see the results.
+No build step is required.
 
-### Examples
-Here are some examples of how to use the simulator:
+## Notes
 
-#### Example 1: First Come First Served (FCFS)
-- Arrival Times: `0 1 2 3`
-- Burst Times: `3 6 4 5`
+- The simulator includes a light and dark mode toggle.
+- Theme preference is saved in local storage.
+- Idle CPU time appears in the Gantt chart when no process is available.
 
-#### Example 2: Shortest Job First (SJF)
-- Arrival Times: `0 1 2 3`
-- Burst Times: `6 8 7 3`
+## Repository metadata
 
-#### Example 3: Shortest Remaining Time First (SRTF)
-- Arrival Times: `0 2 4 6`
-- Burst Times: `8 4 9 5`
+Repository settings are defined in:
+- `.github/settings.yml`
 
-#### Example 4: Round Robin
-- Arrival Times: `0 1 2 3`
-- Burst Times: `5 4 3 2`
-- Time Quantum: `2`
-
-#### Example 5: Priority Scheduling (Non-preemptive)
-- Arrival Times: `0 1 2 3`
-- Burst Times: `4 3 2 1`
-- Priority Values: `2 1 3 4`
-
-#### Example 6: Priority Scheduling (Preemptive)
-- Arrival Times: `0 1 2 3`
-- Burst Times: `4 3 2 1`
-- Priority Values: `2 1 3 4`
-
-## Contributing
-Contributions are welcome! If you have any suggestions or improvements, please create a pull request or open an issue on GitHub.
-
-### Guidelines
-- Fork the repository.
-- Create a new branch for your feature or bugfix.
-- Make your changes and commit them with clear and concise messages.
-- Push your changes to your forked repository.
-- Create a pull request to the main repository.
-
-## Resources
-- [GitHub Repository](https://github.com/Konseptt/CPU-scheduler)
-- [Konsept's GitHub Profile](https://github.com/Konseptt)
+This includes:
+- Description
+- Website
+- Topics

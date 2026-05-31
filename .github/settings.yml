@@ -1,0 +1,12 @@
+repository:
+  name: CPU-scheduler
+  description: Interactive CPU scheduling simulator with visual Gantt chart output for core operating system algorithms.
+  homepage: https://syllabuscal.ranjansharma.info.np
+  topics:
+    - cpu-scheduling
+    - operating-systems
+    - algorithms
+    - javascript
+    - gantt-chart
+    - simulator
+    - education
