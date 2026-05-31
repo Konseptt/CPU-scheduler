@@ -10,10 +10,10 @@ I built this CPU Scheduling Simulator as a clean and visual way to practice sche
 
 This simulator supports:
 - First Come First Served (FCFS)
-- Shortest Job First (SJF, non preemptive)
+- Shortest Job First (SJF, non-preemptive)
 - Shortest Remaining Time First (SRTF, preemptive)
 - Round Robin (with time quantum)
-- Priority Scheduling (non preemptive and preemptive)
+- Priority Scheduling (non-preemptive and preemptive)
 
 For each run, it calculates:
 - Completion Time
